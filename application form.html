@@ -8,10 +8,32 @@
         .tight {
             line-height: 1;
         }
+
+        #container {
+            width: 520px;
+            border: 1px solid black;
+            padding: 20px 40px;
+            margin: 0 auto;
+        }
+
+        fieldset {
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            line-height: 30px;
+        }
     </style>
 
-<body>
-    <fieldset>
+<body div id="container">
         <h1>프런트엔드 개발자 지원서</h1>
         <p>HTML, CSS, JavaScript에 대한 기술적 이해와 경험이 있는 분을 찾습니다.</p>
         <hr>
@@ -22,19 +44,16 @@
         연락처 <input type="text" size="20">
         <h4>지원 분야</h4>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-size:18px; color:#999;">◯</span>
-        웹 퍼블리싱<br>
+        <input type="radio" name="field">웹 퍼블리싱<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-size:18px; color:#999;">◯</span>
-        웹 애플리케이션 개발<br>
+        <input type="radio" name="field">웹 애플리케이션 개발<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-size:18px; color:#999;">◯</span>
-        개발 환경 개선<br>
+        <input type="radio" name="field">개발 환경 개선<br>
         <h4>지원동기</h4>
         <textarea class="tight" rows="5" cols="50" placeholder="본사 입력 동기를 간략히 써 주세요."></textarea><br>
         <input type="button" value="접수하기">
         <input type="button" value="다시 쓰기">
-    </fieldset>
+
 </body>
 
 </html>
