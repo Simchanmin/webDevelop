@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여간 시간 즐기기</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    #travel {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title-text {
+      text-align: center;
+      width: 100%;
+    }
+
+    .title-text>h2 {
+      font-size: 2.5em;
+      color: #919191;
+    }
+
+    .title-text>p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    .travel-list {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .travel-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s;
+      min-width: 220px;
+      max-width: 260px;
+      /* ✅ 높이 고정 */
+      height: 380px;
+      box-sizing: border-box;
+      justify-content: space-between;
+      /* 위아래 균형 */
+    }
+
+    .travel-card img {
+      width: 150px;
+      height: 150px;
+      margin: 15px 0;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      box-shadow: 5px 5px 30px 2px #000;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+      /* 이미지가 줄어들지 않게 */
+    }
+
+    .travel-card h3 {
+      margin: 10px 0 8px 0;
+      font-size: 1.3em;
+      color: #333;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .travel-card p {
+      font-size: 16px;
+      color: #666;
+      text-align: center;
+      flex-grow: 1;
+      /* 문단이 공간 차지 */
+      display: flex;
+      align-items: center;
+      /* 세로 중앙 */
+    }
+
+
+    a {
+      text-decoration: none;
+      color: #222;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .travel-list {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="travel">
+    <div class="title-text">
+      <h2>여가 시간 즐기기</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, in! Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="travel-list">
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-1.png">
+          <h3>도심 투어</h3>
+          <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-2.png">
+          <h3>바다 즐기기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-3.png">
+          <h3>등산 도전하기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-4.png">
+          <h3>관광지 투어</h3>
+          <p>Lorem, ipsum dolor. Lorem ipsum dolor sit amet.</p>
+        </a>
+      </div>
+    </div>
+    <div class="travel-list">
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/cat.jpg">
+          <h3>고양이 카페</h3>
+          <p>Lorem ipsum dolor sit amet. Spend time with adorable cats.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/bg5.jpg">
+          <h3>사막 여행</h3>
+          <p>Lorem ipsum dolor sit amet. Experience the charm of the mysterious desert.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/guitar-bg.jpg">
+          <h3>기타 연습</h3>
+          <p>Lorem ipsum dolor sit amet. Relaxing time with music.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tree.png">
+          <h3>휴식 시간</h3>
+          <p>Lorem ipsum dolor sit amet. Enjoy a comfortable time of rest.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
