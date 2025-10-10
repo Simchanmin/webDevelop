@@ -1,36 +1,149 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <title>CSS float 속성</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <title>버거킹 메뉴 판매</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI','맑은 고딕',Arial,sans-serif;
+      background: #fff8f0;
+    }
+    header {
+      background: #d62300; /* 버거킹 레드 */
+      color: #fff;
+      padding: 28px 0;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    header p {
+      margin: 6px 0 0 0;
+      font-size: 1.1rem;
+      font-weight: normal;
+    }
 
-        #contents {
-            background: url('../images/bg.jpg') no-repeat;
-            background-size: cover;
-            width: 800px;
-            height: 500px;
-            margin: 0 auto;
-        }
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 50px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        h1 {
-            color: #fff;
-            font: size 120px;
-        }
-    </style>
-
+    .menu-item {
+      width: 260px;
+      background: #fff;
+      border: 2px solid #f5c400; /* 버거킹 옐로우 */
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .menu-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 3px solid #f5c400;
+    }
+    .menu-title {
+      font-size: 1.2rem;
+      color: #502314; /* 버거킹 브라운 */
+      margin: 18px 0 6px 0;
+      font-weight: bold;
+      text-align: center;
+    }
+    .menu-desc {
+      font-size: 0.95rem;
+      color: #555;
+      padding: 0 16px;
+      margin-bottom: 8px;
+      text-align: center;
+      min-height: 48px;
+    }
+    .menu-price {
+      font-size: 1.1rem;
+      color: #d62300;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+    .buy-btn {
+      padding: 10px 24px;
+      background: linear-gradient(90deg,#f5c400,#d62300);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 24px;
+      margin-bottom: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .buy-btn:hover {
+      background: linear-gradient(90deg,#d62300,#f5c400);
+    }
+    @media (max-width: 800px) {
+      .menu-container {
+        gap: 24px;
+      }
+      .menu-item {
+        width: 86vw;
+        min-width: 180px;
+      }
+    }
+  </style>
+</head>
 <body>
-    <div class="wrapper">
-        <div id="box">box1</div>
-        <div id="box2">box2</div>
-        <p>Lorem, ipsum ......</p>
-
+  <header>
+    <h1>버거킹 메뉴 스토어</h1>
+    <p>2025 버거킹 인기 메뉴 지금 주문하기</p>
+  </header>
+  <main>
+    <div class="menu-container">
+      <div class="menu-item">
+        <img class="menu-img" src="images/1.jpeg" alt="와퍼 버거">
+        <div class="menu-title">와퍼</div>
+        <div class="menu-desc">불맛 가득 flame-grilled 100% 순쇠고기 와퍼</div>
+        <div class="menu-price">₩6,900</div>
+        <button class="buy-btn">주문하기</button>
+      </div>
+      <div class="menu-item">
+        <img class="menu-img" src="images/2.jpeg" alt="불고기 버거">
+        <div class="menu-title">불고기 버거</div>
+        <div class="menu-desc">달콤 짭짤한 불고기 소스가 매력적인 시그니처 버거</div>
+        <div class="menu-price">₩5,500</div>
+        <button class="buy-btn">주문하기</button>
+      </div>
+      <div class="menu-item">
+        <img class="menu-img" src="images/3.jpeg" alt="감자튀김">
+        <div class="menu-title">프렌치프라이</div>
+        <div class="menu-desc">바삭하고 고소한 감자튀김, 와퍼와 최고의 조합</div>
+        <div class="menu-price">₩2,900</div>
+        <button class="buy-btn">주문하기</button>
+      </div>
+      <div class="menu-item">
+        <img class="menu-img" src="images/4.jpeg" alt="콜라 음료">
+        <div class="menu-title">코카콜라</div>
+        <div class="menu-desc">시원하게 즐기는 탄산 가득 코카콜라</div>
+        <div class="menu-price">₩2,500</div>
+        <button class="buy-btn">주문하기</button>
+      </div>
+    </div>
+  </main>
 </body>
-
 </html>
