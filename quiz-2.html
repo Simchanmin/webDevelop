@@ -1,190 +1,152 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE HTML>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>여간 시간 즐기기</title>
+  <title>가상 선택자</title>
   <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    #travel {
-      width: 100%;
-      max-width: 1200px;
+    .container {
+      width: 960px;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
-    .title-text {
-      text-align: center;
-      width: 100%;
+    .navi {
+      width: 960px;
+      height: 60px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ccc;
     }
 
-    .title-text>h2 {
-      font-size: 2.5em;
-      color: #919191;
+    .navi ul {
+      list-style: none;
+      padding-top: 10px;
+      padding-bottom: 5px;
     }
 
-    .title-text>p {
-      font-size: 1.2em;
-      color: #ccc;
-    }
-
-    .travel-list {
-      padding-top: 20px;
-      display: flex;
-      flex-direction: row;
-      gap: 24px;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .travel-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.2s;
-      min-width: 220px;
-      max-width: 260px;
-      /* ✅ 높이 고정 */
-      height: 380px;
-      box-sizing: border-box;
-      justify-content: space-between;
-      /* 위아래 균형 */
-    }
-
-    .travel-card img {
+    .navi ul li {
+      display: inline-block;
       width: 150px;
-      height: 150px;
-      margin: 15px 0;
+      padding: 10px;
+    }
+
+    .navi a:link, .navi a:visited {
+      font-size: 14px;
+      padding: 10px;
+      text-decoration: none; /* 밑줄 없음 */
+    }
+
+    .navi a:hover, .navi a:focus {
+      background-color: #222; /* 배경색 */
+      color: #fff; /* 글자색 */
+    }
+
+    .navi a:active {
+      background-color: #f00; /* 배경색 */
+    }
+
+    #signup {
+      background: #fff;
+      border: 1px solid #222;
+      border-radius: 5px;
+      padding: 20px;
+      width: 400px;
+      margin: 30px auto;
+    }
+
+    #signup fieldset {
       border: 1px solid #ccc;
-      border-radius: 50%;
-      box-shadow: 5px 5px 30px 2px #000;
-      object-fit: cover;
-      display: block;
-      flex-shrink: 0;
-      /* 이미지가 줄어들지 않게 */
+      margin-bottom: 30px;
     }
 
-    .travel-card h3 {
-      margin: 10px 0 8px 0;
-      font-size: 1.3em;
-      color: #333;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .travel-card p {
+    #signup legend {
       font-size: 16px;
-      color: #666;
-      text-align: center;
-      flex-grow: 1;
-      /* 문단이 공간 차지 */
-      display: flex;
-      align-items: center;
-      /* 세로 중앙 */
+      font-weight: bold;
+      padding-left: 5px;
+      padding-bottom: 10px;
     }
 
-
-    a {
-      text-decoration: none;
-      color: #222;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    #signup ul li {
+      line-height: 30px;
+      list-style: none;
+      padding: 5px 10px;
+      margin-bottom: 2px;
     }
 
-    @media (max-width: 900px) {
-      .travel-list {
-        flex-direction: column;
-        gap: 24px;
-      }
+    #signup fieldset:first-of-type label {
+      float: left;
+      font-size: 13px;
+      width: 60px;
+    }
+
+    #signup input[type=text], input[type=tel] {
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 5px;
+      width: 200px;
+    }
+
+    #signup button {
+      border: 1px solid #222;
+      border-radius: 20px;
+      display: block;
+      font: 16px 맑은고딕, 굴림, 돋움;
+      letter-spacing: 1px;
+      margin: auto;
+      padding: 7px 25px;
+    }
+
+    #signup b {
+      float: left;
+      font-size: 13px;
+      width: 110px;
+    }
+
+    /* Do it! 라디오 버튼을 클릭했을 때 label 스타일 지정하기 */
+    #signup input:checked + label {
+      color: red; /* 글자색 */
+      font-weight: bold; /* 글자 굵게 */
     }
   </style>
 </head>
-
 <body>
-  <div id="travel">
-    <div class="title-text">
-      <h2>여가 시간 즐기기</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, in! Lorem ipsum dolor sit amet.</p>
-    </div>
-    <div class="travel-list">
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/tr-1.png">
-          <h3>도심 투어</h3>
-          <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/tr-2.png">
-          <h3>바다 즐기기</h3>
-          <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/tr-3.png">
-          <h3>등산 도전하기</h3>
-          <p>Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/tr-4.png">
-          <h3>관광지 투어</h3>
-          <p>Lorem, ipsum dolor. Lorem ipsum dolor sit amet.</p>
-        </a>
-      </div>
-    </div>
-    <div class="travel-list">
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/cat.jpg">
-          <h3>고양이 카페</h3>
-          <p>Lorem ipsum dolor sit amet. Spend time with adorable cats.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/bg5.jpg">
-          <h3>사막 여행</h3>
-          <p>Lorem ipsum dolor sit amet. Experience the charm of the mysterious desert.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/guitar-bg.jpg">
-          <h3>기타 연습</h3>
-          <p>Lorem ipsum dolor sit amet. Relaxing time with music.</p>
-        </a>
-      </div>
-      <div class="travel-card">
-        <a href="#">
-          <img src="images/tree.png">
-          <h3>휴식 시간</h3>
-          <p>Lorem ipsum dolor sit amet. Enjoy a comfortable time of rest.</p>
-        </a>
-      </div>
-    </div>
+  <div class="container">
+    <nav class="navi">
+      <ul>
+        <li><a href="ps-1.html#intro">이용 안내</a></li>
+        <li><a href="ps-1.html#room">객실 소개</a></li>
+        <li><a href="ps-1.html#reservation">예약 방법 및 요금</a></li>
+        <li><a href="ps-2.html">예약하기</a></li>
+      </ul>
+    </nav>
+
+    <form id="signup">
+      <fieldset>
+        <legend>개인 정보</legend>
+        <ul>
+          <li>
+            <label for="fullname">이름</label>
+            <input id="fullname" name="fullname" type="text" required>
+          </li>
+          <li>
+            <label for="tel">연락처</label>
+            <input id="tel" name="tel" type="tel">
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>객실 정보</legend>
+        <ul>
+          <li>
+            <input type="radio" name="room" id="basic">
+            <label for="basic">기본형(최대 2인)</label>
+          </li>
+          <li>
+            <input type="radio" name="room" id="family">
+            <label for="family">가족형(최대 8인)</label>
+          </li>
+        </ul>
+      </fieldset>
+      <button type="submit">제출</button>
+    </form>
   </div>
 </body>
-
 </html>

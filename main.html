@@ -2,32 +2,324 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>속성 선택자</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객실 예약 시스템</title>
     <style>
-        ul {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .language-selector {
+            background: #f8f9fa;
+            padding: 15px 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .language-selector ul {
             list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        li {
-            padding: 5px 30px;
+
+        .language-selector li:first-child {
+            font-weight: 600;
+            color: #333;
         }
-        li a {
-            font-size: 16px;
+
+        .language-selector a {
+            padding: 8px 35px 8px 35px;
+            font-size: 14px;
+            color: #555;
             text-decoration: none;
-            color: #000;
+            border-radius: 6px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .language-selector a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .language-selector a[title ^="eng"] {
+            background: url(images/us.png) no-repeat left center;
+            padding-left: 35px;
         }
         
-        /* Do it! target 속성 값이 _blank인 a 요소에만 스타일 지정하기 */
-        a[target="_blank"] {
-            padding-right: 30px; /* 오른쪽에 30px 여백 */
-            background: url(images/newwindow.png) no-repeat center right; /* 배경 이미지 지정 */
+        .language-selector a[title ^="jap"] {
+            background: url(images/jp.png) no-repeat left center;
+            padding-left: 35px;
+        }
+        
+        .language-selector a[title ^="chin"] {
+            background: url(images/ch.png) no-repeat left center;
+            padding-left: 35px;
+        }
+
+        nav.navi {
+            background: #2c3e50;
+            padding: 0;
+        }
+
+        nav.navi ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav.navi li {
+            padding: 0;
+        }
+
+        nav.navi a {
+            display: block;
+            padding: 18px 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav.navi a:hover {
+            background: #34495e;
+            border-bottom: 3px solid #667eea;
+        }
+
+        nav.navi a[target="_blank"] {
+            padding-right: 45px;
+            background: url(images/newwindow.png) no-repeat center right 15px;
+        }
+
+        .form-wrapper {
+            padding: 40px;
+        }
+
+        #signup fieldset {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        #signup legend {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            padding: 0 15px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        #signup ul {
+            list-style: none;
+        }
+
+        #signup ul li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #signup fieldset:first-of-type li {
+            display: block;
+        }
+
+        #signup fieldset:first-of-type label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        #signup input[type="text"],
+        #signup input[type="tel"],
+        #signup input[type="email"],
+        #signup select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        #signup input[type="text"]:focus,
+        #signup input[type="tel"]:focus,
+        #signup input[type="email"]:focus,
+        #signup select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #signup input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        #signup fieldset:last-of-type label {
+            cursor: pointer;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .submit-wrapper {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            nav.navi ul {
+                flex-direction: column;
+            }
+
+            nav.navi a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .form-wrapper {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
-    <ul>
-        <li><a href="https://html.spec.whatwg.org" target="_blank">HTML</a></li>
-        <li><a href="https://www.w3.org/TR/selectors">CSS Selector Level 3</a></li>
-        <li><a href="https://www.w3.org/TR/css3-mediaqueries">미디어쿼리</a></li>
-    </ul>
+    <div class="container">
+        <header>
+            <h1>🏨 객실 예약 시스템</h1>
+            <p>편안하고 안전한 숙박을 위한 최고의 선택</p>
+        </header>
+
+        <div class="language-selector">
+            <ul>
+                <li>외국어 서비스</li>
+                <li><a href="#" title="english">영어</a></li>
+                <li><a href="#" title="japanese">일본어</a></li>
+                <li><a href="#" title="chinese">중국어</a></li>
+            </ul>
+        </div>
+
+        <nav class="navi">
+            <ul>
+                <li><a href="ps-1.html#intro">이용 안내</a></li>
+                <li><a href="ps-1.html#room">객실 소개</a></li>
+                <li><a href="ps-1.html#reservation">예약 방법 및 요금</a></li>
+                <li><a href="ps-2.html">예약하기</a></li>
+            </ul>
+        </nav>
+
+        <div class="form-wrapper">
+            <form id="signup">
+                <fieldset>
+                    <legend>개인 정보</legend>
+                    <ul>
+                        <li>
+                            <label for="fullname">이름 *</label>
+                            <input id="fullname" name="fullname" type="text" placeholder="홍길동" required>
+                        </li>
+                        <li>
+                            <label for="tel">연락처 *</label>
+                            <input id="tel" name="tel" type="tel" placeholder="010-1234-5678" required>
+                        </li>
+                        <li>
+                            <label for="email">이메일</label>
+                            <input id="email" name="email" type="email" placeholder="example@email.com">
+                        </li>
+                    </ul>
+                </fieldset>
+                <fieldset>
+                    <legend>객실 정보</legend>
+                    <ul>
+                        <li>
+                            <input type="radio" name="room" id="basic" value="basic" checked>
+                            <label for="basic">기본형 (2인실 - 85,000원)</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="room" id="deluxe" value="deluxe">
+                            <label for="deluxe">디럭스형 (2인실 - 120,000원)</label>
+                        </li>
+                        <li>
+                            <input type="radio" name="room" id="suite" value="suite">
+                            <label for="suite">스위트형 (4인실 - 180,000원)</label>
+                        </li>
+                    </ul>
+                </fieldset>
+                <div class="submit-wrapper">
+                    <button type="submit" class="submit-btn">예약하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
