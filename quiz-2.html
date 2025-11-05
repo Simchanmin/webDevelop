@@ -1,152 +1,184 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
-  <title>가상 선택자</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+
   <style>
-    .container {
-      width: 960px;
-      margin: 0 auto;
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0b1220;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --primary: #5b9cff;
+      --danger: #ef4444;
+      --op: #334155;
+      --shadow: 0 15px 40px rgba(0,0,0,0.35);
     }
 
-    .navi {
-      width: 960px;
-      height: 60px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #ccc;
+    /* page layout */
+    html, body {
+      height: 100%;
+    }
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(1200px 600px at 20% -10%, #1f2a44, transparent 60%),
+                  radial-gradient(900px 700px at 120% 120%, #0b1220, transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Apple SD Gothic Neo, sans-serif;
     }
 
-    .navi ul {
-      list-style: none;
-      padding-top: 10px;
-      padding-bottom: 5px;
+    /* calculator panel */
+    .calculator {
+      width: min(92vw, 340px);
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.04);
     }
 
-    .navi ul li {
-      display: inline-block;
-      width: 150px;
-      padding: 10px;
+    /* display */
+    .display {
+      width: 100%;
+      height: 64px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      background: #0a0f1a;
+      border: 1px solid #0f1a2b;
+      border-radius: 12px;
+      color: #c7d2fe;
+      font-size: 28px;
+      line-height: 1;
+      text-align: right;
+      outline: none;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.35);
+    }
+    .display:disabled {
+      opacity: 1; /* disabled 기본 흐림 제거 */
+      -webkit-text-fill-color: #c7d2fe; /* iOS */
     }
 
-    .navi a:link, .navi a:visited {
-      font-size: 14px;
-      padding: 10px;
-      text-decoration: none; /* 밑줄 없음 */
+    /* buttons grid */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .buttons button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 0;
+      font-size: 18px;
+      color: var(--text);
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: transform 0.05s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .buttons button:hover { background: #121b31; border-color: #2a3a52; }
+    .buttons button:active { transform: translateY(1px); }
+
+    /* operator buttons */
+    .buttons .operator {
+      background: #11203a;
+      border-color: #183255;
+      color: #9cc2ff;
+    }
+    .buttons .operator:hover { background: #122544; }
+
+    /* backspace variant (테마 유지) */
+    .buttons .backspace {
+      background: #17233a;
+      border-color: #22406b;
+      color: #cfe2ff;
     }
 
-    .navi a:hover, .navi a:focus {
-      background-color: #222; /* 배경색 */
-      color: #fff; /* 글자색 */
+    /* last row: 0 and = 크기 확장 */
+    .buttons button:nth-last-child(2) { /* 0 */
+      grid-column: span 2;
+    }
+    .buttons button:last-child { /* = */
+      grid-column: span 2;
+      background: linear-gradient(180deg, #347cff, #2465e5);
+      border-color: #2f6fe9;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .buttons button:last-child:hover { filter: brightness(1.05); }
+
+    /* clear(C) 강조 */
+    .buttons button.operator:nth-child(3) {
+      background: #3a1111;
+      border-color: #5e1f1f;
+      color: #ffb3b3;
     }
 
-    .navi a:active {
-      background-color: #f00; /* 배경색 */
-    }
-
-    #signup {
-      background: #fff;
-      border: 1px solid #222;
-      border-radius: 5px;
-      padding: 20px;
-      width: 400px;
-      margin: 30px auto;
-    }
-
-    #signup fieldset {
-      border: 1px solid #ccc;
-      margin-bottom: 30px;
-    }
-
-    #signup legend {
-      font-size: 16px;
-      font-weight: bold;
-      padding-left: 5px;
-      padding-bottom: 10px;
-    }
-
-    #signup ul li {
-      line-height: 30px;
-      list-style: none;
-      padding: 5px 10px;
-      margin-bottom: 2px;
-    }
-
-    #signup fieldset:first-of-type label {
-      float: left;
-      font-size: 13px;
-      width: 60px;
-    }
-
-    #signup input[type=text], input[type=tel] {
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      padding: 5px;
-      width: 200px;
-    }
-
-    #signup button {
-      border: 1px solid #222;
-      border-radius: 20px;
-      display: block;
-      font: 16px 맑은고딕, 굴림, 돋움;
-      letter-spacing: 1px;
-      margin: auto;
-      padding: 7px 25px;
-    }
-
-    #signup b {
-      float: left;
-      font-size: 13px;
-      width: 110px;
-    }
-
-    /* Do it! 라디오 버튼을 클릭했을 때 label 스타일 지정하기 */
-    #signup input:checked + label {
-      color: red; /* 글자색 */
-      font-weight: bold; /* 글자 굵게 */
+    @media (max-width: 360px) {
+      .display { font-size: 24px; height: 56px; }
+      .buttons button { font-size: 16px; padding: 12px 0; }
     }
   </style>
-</head>
-<body>
-  <div class="container">
-    <nav class="navi">
-      <ul>
-        <li><a href="ps-1.html#intro">이용 안내</a></li>
-        <li><a href="ps-1.html#room">객실 소개</a></li>
-        <li><a href="ps-1.html#reservation">예약 방법 및 요금</a></li>
-        <li><a href="ps-2.html">예약하기</a></li>
-      </ul>
-    </nav>
 
-    <form id="signup">
-      <fieldset>
-        <legend>개인 정보</legend>
-        <ul>
-          <li>
-            <label for="fullname">이름</label>
-            <input id="fullname" name="fullname" type="text" required>
-          </li>
-          <li>
-            <label for="tel">연락처</label>
-            <input id="tel" name="tel" type="tel">
-          </li>
-        </ul>
-      </fieldset>
-      <fieldset>
-        <legend>객실 정보</legend>
-        <ul>
-          <li>
-            <input type="radio" name="room" id="basic">
-            <label for="basic">기본형(최대 2인)</label>
-          </li>
-          <li>
-            <input type="radio" name="room" id="family">
-            <label for="family">가족형(최대 8인)</label>
-          </li>
-        </ul>
-      </fieldset>
-      <button type="submit">제출</button>
-    </form>
+
+</head>
+
+<body>
+  <div class="calculator">
+    <input type="text" id="display" class="display" disabled>
+    <div class="buttons">
+      <button onclick="append('(')" class="operator">(</button>
+      <button onclick="append(')')" class="operator">)</button>
+      <button onclick="clearDisplay()" class="operator">C</button>
+      <button onclick="backspace()" class="operator backspace" title="한 글자 지우기">⌫</button>
+      <button onclick="append('/')" class="operator">/</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('*')" class="operator">*</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('-')" class="operator">-</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('+')" class="operator">+</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="calculate()" class="operator">=</button>
+    </div>
   </div>
+
+  <script>
+    function append(value) {
+      const display = document.getElementById('display');
+      display.value += value;
+    }
+
+    function clearDisplay() {
+      const display = document.getElementById('display');
+      display.value = '';
+    }
+
+    function calculate() {
+      const display = document.getElementById('display');
+      display.value = eval(display.value);
+    }
+
+    function backspace() {
+      const display = document.getElementById('display');
+      display.value = display.value.slice(0, -1);
+    }
+  </script>
 </body>
+
 </html>
